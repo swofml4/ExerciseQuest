@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>ExerciseQuest</title>
+    <%= csrf_meta_tags %>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+  	<nav role="navigation" class="navbar navbar-inverse navbar-fixed-top">
+	  <div class="container">
+	    <!-- Brand and toggle get grouped for better mobile display -->
+	    <div class="navbar-header pull-left">
+	      <a href="/" class="navbar-brand">EQ</a>
+	    </div>
+
+
+	    <!-- 'Sticky' (non-collapsing) right-side menu item(s) -->
+    <div class="navbar-header pull-right">
+      <ul class="nav pull-left">
+        <!-- This works well for static text, like a username -->
+        <% if user_signed_in? %>
+        	<% user_level = 0 %>
+        	<% current_user.user_stats.each do |user_stat| %>
+        		<% user_level += user_stat.level_points %>
+        	<% end %>
+        	<li class="navbar-text pull-left"><%= current_user.email[0..current_user.email.index('@')-1] %></li>
+        	<li class="navbar-text pull-left">&nbsp; Level:<b><%= user_level %>&nbsp;</b></li>
+       	<% end %>
+        <!-- Add any additional bootstrap header items.  This is a drop-down from an icon -->
+        <% if user_signed_in? %>
+	        <li class="dropdown pull-right">
+	          <a href="#" data-toggle="dropdown" style="color:#777; margin-top: 5px;" class="dropdown-toggle"><span class="glyphicon glyphicon-folder-close"></span><b class="caret"></b></a>
+	          <ul class="dropdown-menu">
+	            <li><%= link_to 'Bodyparts', bodyparts_path %></a></li>
+		        <li><%= link_to 'Exercises', exercises_path %></a></li>
+		        <li><%= link_to 'Config', game_configs_path %></li>
+	          </ul>
+	        </li>
+	    <% end %>
+      </ul>
+
+      <!-- Required bootstrap placeholder for the collapsed menu -->
+      <button type="button" data-toggle="collapse" data-target=".navbar-collapse" class="navbar-toggle"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+      </button>
+    </div>
+
+	<!-- Additional navbar items -->
+    <div class="collapse navbar-collapse navbar-right">
+      <!--                      pull-right keeps the drop-down in line -->
+      <ul class="nav navbar-nav pull-right">
+	    <% if user_signed_in? %>
+	    	<li><%= link_to 'Weight', weights_path %></li>
+	    	<li><%= link_to 'Workouts', workouts_path %></li>
+    		<li><%= link_to 'Log Out', destroy_user_session_path, :method => :delete %></li>
+        <% else %>
+        	<li><%= link_to 'Sign Up', new_user_registration_path %></li>
+        	<li><%= link_to 'Log In', new_user_session_path %></li>
+       	<% end %>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+  	<div class="container-fluid" style="margin-top:50px">
+  		<%= flash_messages %>
+    	<%= yield %>
+    </div>
+  </body>
+</html>

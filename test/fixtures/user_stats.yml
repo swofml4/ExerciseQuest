@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  bodypart: one
+  base_points: 1
+  level_points: 9.99
+
+two:
+  user: two
+  bodypart: two
+  base_points: 1
+  level_points: 9.99

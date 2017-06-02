@@ -1,0 +1,17 @@
+<%= simple_form_for exercise do |f| %>
+  <div class="row">
+    <div class="col-sm-3 form-group">
+      <%= f.association :bodyparts, as: :check_boxes, label: 'Bodyparts' %>      
+    </div>
+    <div class="col-sm-6 form-group"><%= f.input :name, :autofocus => true %></div>
+    <div class="col-sm-6 form-group"><%= f.input :description %></div>
+  </div>
+  <div class="row"> 
+    <div class="actions">
+      <div class="col-xs-6"><%= f.submit :class => 'btn btn-default' %></div>
+    </div>
+<% end %>
+  <div class="col-sm-2 col-xs-6">
+    <%= button_to 'Back', bodyparts_path, :method => "get", :class => 'btn btn-default' %>
+  </div>
+  </div>

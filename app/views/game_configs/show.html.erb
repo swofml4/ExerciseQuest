@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Level rate:</strong>
+  <%= @game_config.level_rate %>
+</p>
+
+<p>
+  <strong>Level method:</strong>
+  <%= @game_config.level_method %>
+</p>
+
+<p>
+  <strong>Decay per day:</strong>
+  <%= @game_config.decay_per_day %>
+</p>
+
+<%= link_to 'Edit', edit_game_config_path(@game_config) %> |
+<%= link_to 'Back', game_configs_path %>

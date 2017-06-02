@@ -1,0 +1,33 @@
+<div class="row">
+  <div class="col-xs-8"><h1>Workouts</h1></div>
+  <div class="col-xs-4 centered">
+    <br>
+    <%= button_to 'New Workout', new_workout_path, :method => "get", :class => 'btn btn-default' %>
+  </div>
+</div>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>DateTime</th>
+      <th>Exercise</th>
+      <th>Reps</th>
+      <th colspan="2"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @workouts.each do |workout| %>
+      <tr>
+        <td><%= workout.created_at.strftime("%Y-%m-%d %H:%M") %></td>
+        <td><%= workout.exercise.name %></td>
+        <td><%= workout.reps %></td>
+        <td><%= link_to 'Edit', edit_workout_path(workout) %></td>
+        <td><%= link_to 'Destroy', workout, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+

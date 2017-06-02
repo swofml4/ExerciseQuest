@@ -1,0 +1,36 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th>Exercise</th>
+      <th>Reps</th>
+      <th colspan="2"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% form_count = 1 %>
+    <% @exercises.each do |exercise| %>
+      <tr>
+        <td><%= exercise.name %></td>
+        <%= simple_form_for @workout, html: { :id => 'workout_form_' + form_count.to_s } do |f| %>
+        	<%= f.hidden_field :exercise_id, value: exercise.id.to_s %>
+          <%= f.hidden_field :reps, value: '1' %>
+        	<td><%= f.button :submit, '+1' %></td>
+          <% form_count += 1 %>
+        <% end %>
+        <%= simple_form_for @workout, html: { :id => 'workout_form_' + form_count.to_s } do |f| %>
+        	<%= f.hidden_field :exercise_id, value: exercise.id.to_s %>
+          <%= f.hidden_field :reps, value: '5' %>
+        	<td><%= f.button :submit, '+5' %></td>
+          <% form_count += 1 %>
+        <% end %>
+        <%= simple_form_for @workout, html: { :id => 'workout_form_' + form_count.to_s } do |f| %>
+        	<%= f.hidden_field :exercise_id, value: exercise.id.to_s %>
+          <%= f.hidden_field :reps, value: '10' %>
+        	<td><%= f.button :submit, '+10' %></td>
+          <% form_count += 1 %>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

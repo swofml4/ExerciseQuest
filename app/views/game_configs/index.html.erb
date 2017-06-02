@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Game Configs</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Level rate</th>
+      <th>Level method</th>
+      <th>Decay per day</th>
+      <th colspan="2"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @game_configs.each do |game_config| %>
+      <tr>
+        <td><%= game_config.level_rate %></td>
+        <td><%= game_config.level_method %></td>
+        <td><%= game_config.decay_per_day %></td>
+        <td><%= link_to 'Edit', edit_game_config_path(game_config) %></td>
+        <td><%= link_to 'Destroy', game_config, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Game Config', new_game_config_path %>

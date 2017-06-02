@@ -1,0 +1,33 @@
+<div class="row">
+  <div class="col-xs-8"><h1>Bodyparts</h1></div>
+  <div class="col-xs-4 centered">
+    <br>
+    <%= button_to 'New Bodypart', new_bodypart_path, :method => "get", :class => 'btn btn-default' %>
+  </div>
+</div>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th colspan="2"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @bodyparts.each do |bodypart| %>
+      <tr>
+        <td><%= bodypart.name %></td>
+        <td>
+          <%= button_to 'Edit', edit_bodypart_path(bodypart), :method => "get", :class => 'btn btn-default' %>
+        </td>
+        <td>
+          <%= link_to 'Destroy', bodypart, method: :delete, :class => 'btn btn-default', data: { confirm: 'Are you sure?' } %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= button_to 'New Bodypart', new_bodypart_path, :method => "get", :class => 'btn btn-default' %>
